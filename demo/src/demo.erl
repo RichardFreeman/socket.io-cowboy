@@ -1,16 +1,18 @@
 -module(demo).
+-behaviour(application).
 
--export([start/0, open/3, recv/4, handle_info/4, close/3]).
+-export([start/2, open/3, recv/4, handle_info/4, close/3, stop/1]).
 
 -record(session_state, {}).
 
-start() ->
+start(_Type, _Args) ->
     ok = application:start(sasl),
     ok = application:start(asn1),
     ok = application:start(crypto),
     ok = application:start(public_key),
     ok = application:start(ssl),
     ok = application:start(ranch),
+    ok = application:start(cowlib),
     ok = application:start(cowboy),
     ok = application:start(socketio),
 
@@ -21,13 +23,7 @@ start() ->
                                                                                                                    {session_timeout, 30000},
                                                                                                                    {callback, ?MODULE},
                                                                                                                    {protocol, socketio_data_protocol}])]},
-                                             {"/[...]", cowboy_static, [
-                                                                        {directory, <<"./priv">>},
-                                                                        {mimetypes, [
-                                                                                     {<<".html">>, [<<"text/html">>]},
-                                                                                     {<<".css">>, [<<"text/css">>]},
-                                                                                     {<<".js">>, [<<"application/javascript">>]}]}
-                                                                       ]}
+                                             {"/[...]", cowboy_static, {priv_dir, demo, "."}}
                                             ]}
                                      ]),
 
@@ -66,4 +62,7 @@ handle_info(_Pid, _Sid, _Info, SessionState = #session_state{}) ->
 close(Pid, Sid, _SessionState = #session_state{}) ->
     error_logger:info_msg("close ~p ~p~n", [Pid, Sid]),
     demo_mgr:remove_session(Pid),
+    ok.
+
+stop(_S) ->
     ok.

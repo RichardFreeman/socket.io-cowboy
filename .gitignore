@@ -7,3 +7,13 @@ deps
 *.plt
 *.dump
 .rebar/
+.erlang.mk.packages.v2
+_rel/
+demo/.erlang.mk.packages.v2
+demo/rel/
+demo/relx
+demo/relx.config
+rel/
+relx
+relx.config
+

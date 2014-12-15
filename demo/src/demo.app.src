@@ -1,0 +1,22 @@
+{application, demo, [
+                              {description, ""},
+                              {vsn, "0.1.0"},
+                              {id, "git"},
+                              {modules, []},
+                              {registered, []},
+                              {applications, [
+                                              kernel,
+                                              stdlib,
+                                              sasl,
+                                              asn1,
+                                              crypto,
+                                              public_key,
+                                              ssl,
+                                              ranch,
+                                              cowlib,
+                                              cowboy,
+                                              socketio
+                                             ]},
+                              {mod, {demo_app, []}},
+                              {env, []}
+                             ]}.
