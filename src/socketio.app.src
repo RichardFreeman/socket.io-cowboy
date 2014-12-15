@@ -9,6 +9,10 @@
 		crypto,
 		public_key,
 		ssl,
+                sasl,
+                asn1,
+                ranch,
+                jsx,
 		cowboy
 	]},
 	{mod, {socketio, []}},

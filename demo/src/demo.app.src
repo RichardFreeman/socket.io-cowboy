@@ -7,14 +7,6 @@
                               {applications, [
                                               kernel,
                                               stdlib,
-                                              sasl,
-                                              asn1,
-                                              crypto,
-                                              public_key,
-                                              ssl,
-                                              ranch,
-                                              cowlib,
-                                              cowboy,
                                               socketio
                                              ]},
                               {mod, {demo_app, []}},

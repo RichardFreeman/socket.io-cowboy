@@ -6,15 +6,15 @@
 -record(session_state, {}).
 
 start(_Type, _Args) ->
-    ok = application:start(sasl),
-    ok = application:start(asn1),
-    ok = application:start(crypto),
-    ok = application:start(public_key),
-    ok = application:start(ssl),
-    ok = application:start(ranch),
-    ok = application:start(cowlib),
-    ok = application:start(cowboy),
-    ok = application:start(socketio),
+    % ok = application:start(sasl),
+    % ok = application:start(asn1),
+    % ok = application:start(crypto),
+    % ok = application:start(public_key),
+    % ok = application:start(ssl),
+    % ok = application:start(ranch),
+    % ok = application:start(cowlib),
+    % ok = application:start(cowboy),
+    % ok = application:start(socketio),
 
     Dispatch = cowboy_router:compile([
                                       {'_', [
@@ -30,7 +30,8 @@ start(_Type, _Args) ->
     demo_mgr:start_link(),
 
     cowboy:start_http(socketio_http_listener, 100, [{host, "127.0.0.1"},
-                                                    {port, 8080}], [{env, [{dispatch, Dispatch}]}]).
+                                                    {port, 8080}], [{env, [{dispatch, Dispatch}]}]),
+    demo_sup:start_link().
 
 %% ---- Handlers
 open(Pid, Sid, _Opts) ->

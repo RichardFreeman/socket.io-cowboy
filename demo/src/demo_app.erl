@@ -6,15 +6,15 @@
 -record(session_state, {}).
 
 start(_Type, _Args) ->
-    ok = application:start(sasl),
-    ok = application:start(asn1),
-    ok = application:start(crypto),
-    ok = application:start(public_key),
-    ok = application:start(ssl),
-    ok = application:start(ranch),
-    ok = application:start(cowlib),
-    ok = application:start(cowboy),
-    ok = application:start(socketio),
+    % ok = application:start(sasl),
+    % ok = application:start(asn1),
+    % ok = application:start(crypto),
+    % ok = application:start(public_key),
+    % ok = application:start(ssl),
+    % ok = application:start(ranch),
+    % ok = application:start(cowlib),
+    % ok = application:start(cowboy),
+    % ok = application:start(socketio),
 
     Dispatch = cowboy_router:compile([
                                       {'_', [
